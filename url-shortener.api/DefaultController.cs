@@ -4,7 +4,7 @@ using url_shortener.core.interfaces;
 
 namespace url_shortener
 {
-    [Route("api/[controller]")]
+    [Route("{id?}")]
     [ApiController]
     public class DefaultController : ControllerBase
     {
