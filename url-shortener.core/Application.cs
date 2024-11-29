@@ -1,8 +1,9 @@
+using url_shortener.core.interfaces;
 using url_shortener.infrastructure.Interfaces;
 
 namespace url_shortener.application;
 
-public class Application 
+public class Application : IApplication
 {
     private readonly DateTime baseLine = new(2020, 7, 5);
     private readonly IRepository<string> repository;
@@ -11,7 +12,7 @@ public class Application
         this.repository = repository;
     }
 
-    public async Task<string> GenerateShortenedUrl(string? url, string? shortUrl) 
+    public async Task<string> GenerateShortUrl(string? url, string? shortUrl) 
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(url);
         if (shortUrl != null && await repository.keyExistsAsync(shortUrl))
@@ -21,10 +22,16 @@ public class Application
         return await repository.addAsync(shortUrl, url, TimeSpan.FromDays(30));
     }
 
-    public async Task RemoveShortenedUrl(string? shortUrl)
+    public async Task RemoveShortUrl(string? shortUrl)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(shortUrl);
         await repository.removeAsync(shortUrl);
+    }
+
+    public async Task<string> GetFullUrl(string? shortUrl)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(shortUrl);
+        return await repository.getValueAsync(shortUrl);
     }
 
     private async Task<string> generateUniqueShortUrl()
