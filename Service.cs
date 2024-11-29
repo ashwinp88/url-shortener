@@ -11,9 +11,17 @@ public class Service
         this.repository = repository;
     }
 
-    public async Task GenerateShortenedUrl(string? url) 
+    public async Task<string> GenerateShortenedUrl(string? url) 
     {
-        
+        ArgumentException.ThrowIfNullOrWhiteSpace(url);
+        var shortUrl = await generateUniqueString();
+        return await repository.addAsync(shortUrl, url, TimeSpan.FromDays(30));
+    }
+
+    public async Task RemoveShortenedUrl(string? shortUrl)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(shortUrl);
+        await repository.removeAsync(shortUrl);
     }
 
     private async Task<string> generateUniqueString()
