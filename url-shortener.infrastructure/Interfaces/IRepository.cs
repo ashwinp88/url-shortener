@@ -1,4 +1,4 @@
-namespace url_shortener.Interfaces;
+namespace url_shortener.infrastructure.Interfaces;
 
 public interface IRepository<T>
 {

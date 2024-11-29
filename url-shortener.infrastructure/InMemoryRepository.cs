@@ -1,6 +1,6 @@
 
 using Microsoft.Extensions.Caching.Memory;
-using url_shortener.Interfaces;
+using url_shortener.infrastructure.Interfaces;
 
 namespace url_shortener;
 public class InMemoryRepository : IRepository<string>
