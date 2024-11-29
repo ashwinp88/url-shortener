@@ -18,10 +18,10 @@ namespace url_shortener
 
         [HttpGet("{shortUrl}")]
         public async Task<IActionResult> GetOne([Required]string shortUrl) {
-            if (!await app.ShortUrlExists(shortUrl)) {
+            if (!await app.ShortUrlExistsAsync(shortUrl)) {
                 return NotFound();
             }
-            return Ok(await app.GetFullUrl(shortUrl));
+            return Ok(await app.GetFullUrlAsync(shortUrl));
         }
 
         [HttpPost]
