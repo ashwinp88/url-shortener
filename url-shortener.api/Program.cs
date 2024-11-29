@@ -28,6 +28,12 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Default}/{action=Get}/{id?}"
+);
+
 app.MapControllers();
 
 app.Run();
