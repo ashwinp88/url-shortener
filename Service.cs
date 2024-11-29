@@ -11,10 +11,13 @@ public class Service
         this.repository = repository;
     }
 
-    public async Task<string> GenerateShortenedUrl(string? url) 
+    public async Task<string> GenerateShortenedUrl(string? url, string? shortUrl) 
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(url);
-        var shortUrl = await generateUniqueString();
+        if (shortUrl != null && await repository.keyExistsAsync(shortUrl))
+            throw new ArgumentException("The given short url is taken.");
+            
+        shortUrl ??= await generateUniqueShortUrl();
         return await repository.addAsync(shortUrl, url, TimeSpan.FromDays(30));
     }
 
@@ -24,7 +27,7 @@ public class Service
         await repository.removeAsync(shortUrl);
     }
 
-    private async Task<string> generateUniqueString()
+    private async Task<string> generateUniqueShortUrl()
     {
         string uniqueString = generateString();   
         while (await repository.keyExistsAsync(uniqueString))
