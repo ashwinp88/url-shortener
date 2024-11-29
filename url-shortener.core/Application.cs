@@ -28,13 +28,13 @@ public class Application : IApplication
         await repository.RemoveAsync(shortUrl);
     }
 
-    public async Task<string> GetFullUrl(string? shortUrl)
+    public async Task<string> GetFullUrlAsync(string? shortUrl)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(shortUrl);
         return await repository.GetValueAsync(shortUrl);
     }
 
-    public Task<bool> ShortUrlExists(string? url)
+    public Task<bool> ShortUrlExistsAsync(string? url)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(url);
         return repository.KeyExistsAsync(url);
