@@ -15,4 +15,11 @@
     <ProjectReference Include="../url-shortener.core/url-shortener.application.csproj" />
   </ItemGroup>
 
+  <!-- Add this ItemGroup to include wwwroot files -->
+  <ItemGroup>
+    <Content Update="wwwroot\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
