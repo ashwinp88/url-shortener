@@ -12,32 +12,38 @@ public class Application : IApplication
         this.repository = repository;
     }
 
-    public async Task<string> GenerateShortUrl(string? url, string? shortUrl) 
+    public async Task<string> GenerateShortUrl(string? url, string? shortUrl = null) 
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(url);
-        if (shortUrl != null && await repository.keyExistsAsync(shortUrl))
+        if (shortUrl != null && await repository.KeyExistsAsync(shortUrl))
             throw new ArgumentException("The given short url is taken.");
             
         shortUrl ??= await generateUniqueShortUrl();
-        return await repository.addAsync(shortUrl, url, TimeSpan.FromDays(30));
+        return await repository.AddAsync(shortUrl, url, TimeSpan.FromDays(30));
     }
 
     public async Task RemoveShortUrl(string? shortUrl)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(shortUrl);
-        await repository.removeAsync(shortUrl);
+        await repository.RemoveAsync(shortUrl);
     }
 
-    public async Task<string> GetFullUrl(string? shortUrl)
+    public async Task<string> GetFullUrlAsync(string? shortUrl)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(shortUrl);
-        return await repository.getValueAsync(shortUrl);
+        return await repository.GetValueAsync(shortUrl);
+    }
+
+    public Task<bool> ShortUrlExistsAsync(string? url)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(url);
+        return repository.KeyExistsAsync(url);
     }
 
     private async Task<string> generateUniqueShortUrl()
     {
         string uniqueString = generateString();   
-        while (await repository.keyExistsAsync(uniqueString))
+        while (await repository.KeyExistsAsync(uniqueString))
             uniqueString = generateString();
         return uniqueString;
     }
@@ -47,4 +53,5 @@ public class Application : IApplication
         var ticks = DateTime.UtcNow.Ticks - baseLine.Ticks;
         return ticks.ToString("x"); 
     }
+
 }
