@@ -30,5 +30,16 @@ namespace url_shortener
             return CreatedAtAction(nameof(GetOne), new { shortUrl }, shortUrl);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> GenerateCustomShortUrl(CustomUrlEntryDTO customUrlEntryDTO)
+        {
+            if (await app.ShortUrlExistsAsync(customUrlEntryDTO.ShortUrl))
+            {
+                return Conflict("This short url is taken.");
+            }
+            var shortUrl = await app.GenerateShortUrl(customUrlEntryDTO.Url, customUrlEntryDTO.ShortUrl);
+            return CreatedAtAction(nameof(GetOne), new { shortUrl }, shortUrl);
+        }
+
     }
 }
