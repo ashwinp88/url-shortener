@@ -24,13 +24,13 @@ namespace url_shortener
             return Ok(await app.GetFullUrlAsync(shortUrl));
         }
 
-        [HttpPost]
+        [HttpPost("Generate")]
         public async Task<IActionResult> GenerateShortUrl(UrlEntryDTO urlEntryDTO) {
             var shortUrl = await app.GenerateShortUrl(urlEntryDTO.Url);
             return CreatedAtAction(nameof(GetOne), new { shortUrl }, shortUrl);
         }
 
-        [HttpPost]
+        [HttpPost("GenerateCustom")]
         public async Task<IActionResult> GenerateCustomShortUrl(CustomUrlEntryDTO customUrlEntryDTO)
         {
             if (await app.ShortUrlExistsAsync(customUrlEntryDTO.ShortUrl))
