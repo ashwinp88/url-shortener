@@ -1,12 +1,12 @@
-using url_shortener.Interfaces;
+using url_shortener.infrastructure.Interfaces;
 
-namespace url_shortener;
+namespace url_shortener.application;
 
-public class Service 
+public class Application 
 {
     private readonly DateTime baseLine = new(2020, 7, 5);
     private readonly IRepository<string> repository;
-    public Service(IRepository<string> repository)
+    public Application(IRepository<string> repository)
     {
         this.repository = repository;
     }
