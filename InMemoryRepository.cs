@@ -16,6 +16,9 @@ public class InMemoryRepository : IRepository<string>
 
     public Task<string> addAsync(string key, string value, TimeSpan ttl)
     {
+        if (keyExists(key))
+            throw new ArgumentException("Key Exists");
+
         return Task.FromResult(memoryCache.Set(key, value, DateTimeOffset.UtcNow.Add(ttl)));
     }
 
@@ -28,12 +31,17 @@ public class InMemoryRepository : IRepository<string>
 
     public Task<bool> keyExistsAsync(string key)
     {
-        return Task.FromResult(memoryCache.TryGetValue(key, out string? _));
+        return Task.FromResult(keyExists(key));
     }
 
     public Task removeAsync(string key)
     {
         memoryCache.Remove(key);
         return Task.CompletedTask;
+    }
+
+    private bool keyExists(string key)
+    {
+        return memoryCache.TryGetValue(key, out string? _);
     }
 }
