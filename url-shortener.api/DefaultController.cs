@@ -14,7 +14,7 @@ namespace url_shortener
             this.app = app;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
         public async Task<IActionResult> Get(string id) 
         {
             if (!string.IsNullOrWhiteSpace(id) && await app.ShortUrlExistsAsync(id))
