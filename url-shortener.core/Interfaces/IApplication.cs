@@ -2,7 +2,8 @@ namespace url_shortener.core.interfaces;
 
 public interface IApplication
 {
-    Task<string> GenerateShortUrl(string? url, string? shortUrl);
+    Task<bool> ShortUrlExists(string? url);
+    Task<string> GenerateShortUrl(string? url, string? shortUrl = null);
     Task RemoveShortUrl(string? shortUrl);
     Task<string> GetFullUrl(string? shortUrl);
 }
