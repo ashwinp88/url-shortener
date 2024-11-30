@@ -28,8 +28,7 @@ function getRandomShortUrl(urlObj) {
         contentType: 'application/json',
         data: JSON.stringify(urlObj),
         success: function(result) {
-            console.log(result);
-            alert(result);
+            showUrl(window.location.host + "/" + result);
         },
         error: function(xhr, status, error) {
             console.error(error);
@@ -66,3 +65,9 @@ function copyToClipboard() {
         alert("Failed to copy the link. Please try again.");
     });
 }
+
+function showUrl(shortUrl) {
+    $("#shortLink").val(shortUrl); // Use the correct ID selector with #
+    $("#shortLinkContainer").removeAttr("hidden"); // Remove the hidden attribute to show the container
+}
+

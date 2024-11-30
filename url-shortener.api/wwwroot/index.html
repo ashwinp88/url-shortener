@@ -49,20 +49,20 @@
                         </div>
                         <!-- Submit Button -->
                         <button type="submit" class="btn btn-primary w-100">Shorten URL</button>
-                        <!-- Generated Url -->
-                        <div class="mb-3" hidden>
-                            <label for="shortLink">Your Shortened Link:</label>
-                            <div class="input-group">
-                                <input type="text" id="shortLink" class="form-control"
-                                    value="https://yourdomain.com/short-url" readonly onclick="this.select()">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-primary" id="copyButton" onclick="copyToClipboard()">
-                                        Copy
-                                    </button>
-                                </div>
+                    </form>
+                     <!-- Generated Url -->
+                     <div class="mb-3" id="shortLinkContainer" hidden>
+                        <label for="shortLink">Your Shortened Link:</label>
+                        <div class="input-group">
+                            <input type="text" id="shortLink" class="form-control"
+                                value="https://yourdomain.com/short-url" readonly onclick="this.select()">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-primary" id="copyButton" onclick="copyToClipboard()">
+                                    Copy
+                                </button>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
 
