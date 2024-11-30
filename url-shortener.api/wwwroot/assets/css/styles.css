@@ -1,0 +1,34 @@
+ /* Header Styling */
+ .custom-header {
+    background-color: #27292c;
+    /* A blue shade complementing the icon */
+    color: white;
+    padding: 10px 20px;
+}
+
+.custom-header img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.custom-header .nav-link {
+    color: white !important;
+}
+
+.custom-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.read-only-input {
+    background-color: #f8f9fa;
+    /* Light gray background */
+    border: 1px solid #ced4da;
+    /* Border to match input styles */
+}
+
+.spacer {
+    height: 50px;
+    /* Adjust height as needed */
+}
