@@ -63,7 +63,7 @@
                         <label for="domain" class="form-label">Customize your link</label>
                         <div class="input-group">
                             <input type="text" class="form-control read-only-input" id="domain" value="hostname" readonly>
-                            <input type="text" class="form-control" id="alias" placeholder="Enter alias">
+                            <input type="text" class="form-control" id="alias" placeholder="Enter alias" maxlength="50" pattern="^[a-zA-Z0-9]*$" title="Only alphanueric characters are supported.">
                         </div>
                     </div>
                     <!-- Submit Button -->
