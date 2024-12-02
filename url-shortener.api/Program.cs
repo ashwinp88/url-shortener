@@ -2,6 +2,8 @@ using url_shortener;
 using url_shortener.application;
 using url_shortener.core.interfaces;
 using url_shortener.infrastructure.Interfaces;
+using url_shortener.infrastructure.RandomStringGenerators;
+using url_shortener.infrastructure.RandomStringGenerators.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IDataStore<string>, InMemoryRepository>();
+builder.Services.AddSingleton<IRandomStringGenerator, ThreeWordPhraseGenerator>();
 builder.Services.AddScoped<IApplication, Application>();
 
 var app = builder.Build();
