@@ -3,7 +3,7 @@ using Microsoft.Extensions.Caching.Memory;
 using url_shortener.infrastructure.Interfaces;
 
 namespace url_shortener;
-public class InMemoryRepository : IRepository<string>
+public class InMemoryRepository : IDataStore<string>
 {
     private readonly MemoryCacheOptions cacheOptions;
     private readonly MemoryCache memoryCache;
@@ -14,10 +14,8 @@ public class InMemoryRepository : IRepository<string>
         memoryCache = new(cacheOptions);
     }
 
-    public Task<string> AddAsync(string key, string value, TimeSpan ttl)
+    public Task<string> AddOrUpdateAsync(string key, string value, TimeSpan ttl)
     {
-        if (keyExists(key))
-            throw new ArgumentException("Key Exists");
         memoryCache.Set(key, value, DateTimeOffset.UtcNow.Add(ttl));
         return Task.FromResult(key);
     }

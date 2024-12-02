@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using url_shortener.core.Exceptions;
 using url_shortener.core.interfaces;
 
 namespace url_shortener
@@ -15,13 +16,16 @@ namespace url_shortener
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(string id) 
+        public async Task<IActionResult> Get(string id)
         {
-            if (!string.IsNullOrWhiteSpace(id) && await app.ShortUrlExistsAsync(id))
+            try
             {
                 return Redirect(await app.GetFullUrlAsync(id));
             }
-            return NotFound();
+            catch (UrlNotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
         }
     }
 }
