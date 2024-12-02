@@ -14,10 +14,8 @@ public class InMemoryRepository : IDataStore<string>
         memoryCache = new(cacheOptions);
     }
 
-    public Task<string> AddAsync(string key, string value, TimeSpan ttl)
+    public Task<string> AddOrUpdateAsync(string key, string value, TimeSpan ttl)
     {
-        if (keyExists(key))
-            throw new ArgumentException("Key Exists");
         memoryCache.Set(key, value, DateTimeOffset.UtcNow.Add(ttl));
         return Task.FromResult(key);
     }
