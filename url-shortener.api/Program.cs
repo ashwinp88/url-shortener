@@ -12,7 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<IRepository<string>, InMemoryRepository>();
+builder.Services.AddSingleton<IDataStore<string>, InMemoryRepository>();
 builder.Services.AddScoped<IApplication, Application>();
 
 var app = builder.Build();

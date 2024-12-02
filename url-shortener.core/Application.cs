@@ -6,8 +6,8 @@ namespace url_shortener.application;
 public class Application : IApplication
 {
     private readonly DateTime baseLine = new(2020, 7, 5);
-    private readonly IRepository<string> repository;
-    public Application(IRepository<string> repository)
+    private readonly IDataStore<string> repository;
+    public Application(IDataStore<string> repository)
     {
         this.repository = repository;
     }

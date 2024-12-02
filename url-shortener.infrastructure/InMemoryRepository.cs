@@ -3,7 +3,7 @@ using Microsoft.Extensions.Caching.Memory;
 using url_shortener.infrastructure.Interfaces;
 
 namespace url_shortener;
-public class InMemoryRepository : IRepository<string>
+public class InMemoryRepository : IDataStore<string>
 {
     private readonly MemoryCacheOptions cacheOptions;
     private readonly MemoryCache memoryCache;
