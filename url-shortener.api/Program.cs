@@ -15,7 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<IDataStore<string>, InMemoryRepository>();
+builder.Services.AddSingleton<IDataStore<string>, InMemoryStore>();
 builder.Services.AddSingleton<IRandomStringGenerator, ShortStringGenerator>();
 builder.Services.AddScoped<IApplication, Application>();
 
