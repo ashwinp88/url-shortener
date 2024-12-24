@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using url_shortener.core.Exceptions;
-using url_shortener.core.interfaces;
+using url_shortener.core.Interfaces;
 
-namespace url_shortener
+namespace url_shortener.Controllers
 {
     [Route("{id}")]
     [ApiController]

@@ -1,4 +1,4 @@
-namespace url_shortener.infrastructure.Interfaces;
+namespace url_shortener.infrastructure.DataStores.Interfaces;
 
 public interface IDataStore<T>
 {

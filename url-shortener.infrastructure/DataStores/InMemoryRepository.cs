@@ -1,45 +1,44 @@
-
 using Microsoft.Extensions.Caching.Memory;
-using url_shortener.infrastructure.Interfaces;
+using url_shortener.infrastructure.DataStores.Interfaces;
 
-namespace url_shortener;
+namespace url_shortener.infrastructure.DataStores;
 public class InMemoryRepository : IDataStore<string>
 {
-    private readonly MemoryCacheOptions cacheOptions;
-    private readonly MemoryCache memoryCache;
+    private readonly MemoryCacheOptions _cacheOptions;
+    private readonly MemoryCache _memoryCache;
 
     public InMemoryRepository()
     {
-        cacheOptions = new();
-        memoryCache = new(cacheOptions);
+        _cacheOptions = new();
+        _memoryCache = new(_cacheOptions);
     }
 
     public Task<string> AddOrUpdateAsync(string key, string value, TimeSpan ttl)
     {
-        memoryCache.Set(key, value, DateTimeOffset.UtcNow.Add(ttl));
+        _memoryCache.Set(key, value, DateTimeOffset.UtcNow.Add(ttl));
         return Task.FromResult(key);
     }
 
     public Task<string> GetValueAsync(string key)
     {
-        if (memoryCache.TryGetValue(key, out string? value))
+        if (_memoryCache.TryGetValue(key, out string? value))
             return Task.FromResult(value ?? "");
         throw new KeyNotFoundException();
     }
 
     public Task<bool> KeyExistsAsync(string key)
     {
-        return Task.FromResult(keyExists(key));
+        return Task.FromResult(KeyExists(key));
     }
 
     public Task RemoveAsync(string key)
     {
-        memoryCache.Remove(key);
+        _memoryCache.Remove(key);
         return Task.CompletedTask;
     }
 
-    private bool keyExists(string key)
+    private bool KeyExists(string key)
     {
-        return memoryCache.TryGetValue(key, out string? _);
+        return _memoryCache.TryGetValue(key, out string? _);
     }
 }

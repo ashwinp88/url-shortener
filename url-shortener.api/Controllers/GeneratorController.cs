@@ -1,11 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
-using url_shortener.core;
 using url_shortener.core.Exceptions;
-using url_shortener.core.interfaces;
+using url_shortener.core.Interfaces;
 using url_shortener.DTO;
 
-namespace url_shortener
+namespace url_shortener.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

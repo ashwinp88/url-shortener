@@ -1,4 +1,4 @@
-namespace url_shortener.core;
+namespace url_shortener.core.Exceptions;
 
 public class CustomUrlTakenException : Exception
 {

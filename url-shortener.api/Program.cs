@@ -1,7 +1,8 @@
 using url_shortener;
-using url_shortener.application;
-using url_shortener.core.interfaces;
-using url_shortener.infrastructure.Interfaces;
+using url_shortener.core;
+using url_shortener.core.Interfaces;
+using url_shortener.infrastructure.DataStores;
+using url_shortener.infrastructure.DataStores.Interfaces;
 using url_shortener.infrastructure.RandomStringGenerators;
 using url_shortener.infrastructure.RandomStringGenerators.Interfaces;
 
@@ -15,7 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IDataStore<string>, InMemoryRepository>();
-builder.Services.AddSingleton<IRandomStringGenerator, ThreeWordPhraseGenerator>();
+builder.Services.AddSingleton<IRandomStringGenerator, ShortStringGenerator>();
 builder.Services.AddScoped<IApplication, Application>();
 
 var app = builder.Build();

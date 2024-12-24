@@ -4,11 +4,11 @@ namespace url_shortener.infrastructure.RandomStringGenerators;
 
 public class TicksStringGenerator : IRandomStringGenerator
 {
-    private readonly DateTime baseLine = new(2020, 7, 5);
+    private readonly DateTime _baseLine = new(2020, 7, 5);
 
     public string Generate()
     {
-        var ticks = DateTime.UtcNow.Ticks - baseLine.Ticks;
+        var ticks = DateTime.UtcNow.Ticks - _baseLine.Ticks;
         return ticks.ToString("x"); 
     }
 }

@@ -5,23 +5,23 @@ namespace url_shortener.infrastructure.RandomStringGenerators;
 
 public class ThreeWordPhraseGenerator : IRandomStringGenerator
 {
-    private readonly Random random = new();
+    private readonly Random _random = new();
 
     public string Generate()
     {
         StringBuilder sb = new();
         bool second = false;
         for (int i = 0; i < 3; i++) {
-            int randomIndex = random.Next(THREE_LETTER_WORDS.Length - 1);
+            int randomIndex = _random.Next(_threeLetterWords.Length - 1);
             if (second)
                 sb.Append("-");
-            sb.Append(THREE_LETTER_WORDS[randomIndex]);
+            sb.Append(_threeLetterWords[randomIndex]);
             second = true;
         }
         return sb.ToString();
     }
     
-    static string[] THREE_LETTER_WORDS = {
+    static string[] _threeLetterWords = {
 "Aani","Aaru","abac","abas","Abba","Abby","abed","Abel","abet","abey","Abie","abir","able","ably","abox"
 ,"Absi","abut","acca","Acer","ache","achy","acid","Acis","acle","acme","acne","acor","acre","acta","Acts"
 ,"actu","acyl","Adad","adad","Adai","Adam","Adar","adat","adaw","aday","Adda","adda","Addu","Addy","adet"

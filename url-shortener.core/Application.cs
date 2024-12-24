@@ -1,10 +1,9 @@
-using url_shortener.core;
 using url_shortener.core.Exceptions;
-using url_shortener.core.interfaces;
-using url_shortener.infrastructure.Interfaces;
+using url_shortener.core.Interfaces;
+using url_shortener.infrastructure.DataStores.Interfaces;
 using url_shortener.infrastructure.RandomStringGenerators.Interfaces;
 
-namespace url_shortener.application;
+namespace url_shortener.core;
 
 public class Application : IApplication
 {

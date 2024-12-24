@@ -1,34 +1,47 @@
  /* Header Styling */
+
+ .backing {
+     background-color: #e5e5f7;
+     opacity: 0.1;
+     background-image: linear-gradient(#444cf7 2px, transparent 2px), linear-gradient(90deg, #444cf7 2px, transparent 2px), linear-gradient(#444cf7 1px, transparent 1px), linear-gradient(90deg, #444cf7 1px, #e5e5f7 1px);
+     background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
+     background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+     height: 100%;
+     width: 100%;
+     z-index: -1;
+     position: absolute;
+ }
+
  .custom-header {
-    background-color: #27292c;
-    /* A blue shade complementing the icon */
-    color: white;
-    padding: 10px 20px;
-}
+     background-color: #27292c;
+     /* A blue shade complementing the icon */
+     color: white;
+     padding: 10px 20px;
+ }
 
-.custom-header img {
-    height: 40px;
-    margin-right: 10px;
-}
+ .custom-header img {
+     height: 40px;
+     margin-right: 10px;
+ }
 
-.custom-header .nav-link {
-    color: white !important;
-}
+ .custom-header .nav-link {
+     color: white !important;
+ }
 
-.custom-card {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 20px;
-}
+ .custom-card {
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+     border-radius: 8px;
+     padding: 20px;
+ }
 
-.read-only-input {
-    background-color: #f8f9fa;
-    /* Light gray background */
-    border: 1px solid #ced4da;
-    /* Border to match input styles */
-}
+ .read-only-input {
+     background-color: #f8f9fa;
+     /* Light gray background */
+     border: 1px solid #ced4da;
+     /* Border to match input styles */
+ }
 
-.spacer {
-    height: 50px;
-    /* Adjust height as needed */
-}
+ .spacer {
+     height: 50px;
+     /* Adjust height as needed */
+ }

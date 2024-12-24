@@ -1,4 +1,4 @@
-namespace url_shortener.core.interfaces;
+namespace url_shortener.core.Interfaces;
 
 public interface IApplication
 {
