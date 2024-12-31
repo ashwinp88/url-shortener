@@ -1,3 +1,5 @@
+using Amazon.DynamoDBv2;
+using Amazon.Runtime;
 using url_shortener;
 using url_shortener.core;
 using url_shortener.core.Interfaces;
@@ -15,7 +17,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<IDataStore<string>, InMemoryStore>();
+AmazonDynamoDBConfig config = new()
+{
+    ServiceURL = "http://localhost:8000"
+};
+AmazonDynamoDBClient amazonDbClient = new(config);
+
+builder.Services.AddSingleton<IAmazonDynamoDB>(amazonDbClient);
+builder.Services.AddSingleton<IDataStore<string>, DynamoDbStore>();
 builder.Services.AddSingleton<IRandomStringGenerator, ShortStringGenerator>();
 builder.Services.AddScoped<IApplication, Application>();
 
